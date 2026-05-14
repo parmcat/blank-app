@@ -45,3 +45,19 @@ chart_2 = (alt.Chart(df)
     row="yr"    )
 
 st.altair_chart(chart_2, use_container_width=True)
+
+
+chart_3 = (alt.Chart(df)
+ .mark_rect()
+ .encode(x='yearmonthdate(hospital_time):O',
+         y='hospital_name:N',
+         color=alt.Color('mean(max_wait):Q',
+                         scale=alt.Scale(scheme='orangered'),
+                         legend=alt.Legend(type='symbol')
+                        ),
+         tooltip=['mean(max_wait)','hospital_name:N'],
+         
+        )
+)
+st.altair_chart(chart_3, use_container_width=True)
+
