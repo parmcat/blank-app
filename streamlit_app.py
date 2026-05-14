@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 st.write(
-    "Lab 6 Examples"
+    "Lab 6 Examples")
 
 # Load data
 df = pd.read_parquet("./hk_hospital_wait.parquet", engine="pyarrow")
