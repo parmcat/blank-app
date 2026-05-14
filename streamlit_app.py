@@ -85,5 +85,27 @@ bar.encoding.x.title = 'Hospital'
 bar.encoding.y.title = 'Average Waiting Time in Hour(s)'
 st.altair_chart(bar, use_container_width=True)
 
+#########################
 
+color2 = alt.condition(selection,
+                      alt.Color('hospital_name:N'),
+#                       alt.value('steelblue'),
+                      alt.value('lightgray'))
+
+line1=(alt.Chart(df)
+ .mark_line()
+ .encode(x=alt.X('hours(hospital_time):T'),
+         y='mean(max_wait):Q',
+         color=color2
+        
+    
+        )
+)
+
+line1.title ="Waiting Time for Hong Kong's Hospital"
+line1.encoding.x.title = 'Hour'
+line1.encoding.y.title = 'Average Waiting Time in Hour(s)'
+
+#bar | line1
+st.altair_chart(bar | line1, use_container_width=True)
 
