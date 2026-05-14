@@ -61,3 +61,29 @@ chart_3 = (alt.Chart(df)
 )
 st.altair_chart(chart_3, use_container_width=True)
 
+##################
+
+selection = alt.selection_single(fields=['hospital_name'],name='Random')
+
+color = alt.condition(selection,
+                      alt.value('steelblue'),
+                      alt.value('lightgray'))
+
+bar=(alt.Chart(df)
+ .mark_bar()
+ .encode(y='mean(max_wait):Q',
+         x=alt.X('hospital_name:N',
+         sort=alt.EncodingSortField(field='max_wait', op='mean', 
+                            order='descending')),
+         color=color
+    
+        )
+).add_selection(selection)
+
+bar.title ="Mean Waiting Time for Hong Kong's Hospital"
+bar.encoding.x.title = 'Hospital'
+bar.encoding.y.title = 'Average Waiting Time in Hour(s)'
+st.altair_chart(bar, use_container_width=True)
+
+
+
