@@ -44,4 +44,4 @@ chart_2 = (alt.Chart(df)
 ).facet(
     row="yr"    )
 
-st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart_2, use_container_width=True)
