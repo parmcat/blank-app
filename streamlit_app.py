@@ -29,3 +29,19 @@ chart = (alt.Chart(df)
 
 st.altair_chart(chart, use_container_width=True)
 
+chart_2 = (alt.Chart(df)
+ .mark_rect()
+ .encode(x='week:O',
+         y='wkday_name:O' 
+        ,color=alt.Color('mean(max_wait):Q', scale=alt.Scale(scheme='orangered')))
+
+    .properties(
+        title='Hospital Wait Times by Year',
+        width=800,
+        height=300
+    )
+
+).facet(
+    row="yr"    )
+
+st.altair_chart(chart, use_container_width=True)
